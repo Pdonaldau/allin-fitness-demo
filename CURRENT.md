@@ -1,6 +1,10 @@
 # CURRENT — All In Fitness demo site
 
-_Updated 2026-10-02. Not deployed yet._
+_Updated 2026-10-02. Live site last verified 2026-10-02._
+
+**Live demo:** https://pdonaldau.github.io/allin-fitness-demo/ (GitHub Pages, public repo
+`Pdonaldau/allin-fitness-demo`, deploys from `main` root on every push). A `noindex` meta tag
+in `index.html` keeps the demo out of search results — remove it at go-live.
 
 ## Goal
 
@@ -44,6 +48,8 @@ birthday photo are not named on the site, because we don't know who they are.
 
 ## Next step
 
-Deploy to a free preview URL (Netlify Drop) so Paul can show it on a phone. Then pitch.
-If the gym agrees, collect the placeholder items above, buy a `.ie` domain, and set
-`demo: false`.
+Pitch the gym with the live link. If they agree: collect the placeholder items above,
+buy a `.ie` domain and add it under the repo's Pages settings, set `demo: false`, and
+remove the `noindex` tag.
+
+`gh` CLI is installed but not logged in. Pushing works through git's stored credentials.
