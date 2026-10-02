@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All In Fitness | Gym & Classes in Blessington, Co. Wicklow</title>
+  <meta name="description" content="All In Fitness, Blessington — the largest gym in west Wicklow. Strength equipment, daily classes, personal training. Unit 2, Burgage House, Blessington. Call 045 900 372.">
+  <meta name="theme-color" content="#0c0c0d">
+  <meta property="og:title" content="All In Fitness | Blessington, Co. Wicklow">
+  <meta property="og:description" content="Blessington's biggest gym. Serious kit, daily classes and coaches who know your name.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/hero.webp">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/hero.webp">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <div class="demo-bar" id="demo-bar" hidden>
+    Demo site prepared for All In Fitness. Prices and timetable are placeholders.
+  </div>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-inner">
+      <a class="logo" href="#top" aria-label="All In Fitness home">
+        <img src="img/logo.png" alt="" width="44" height="44">
+        <span>All In <b>Fitness</b></span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="nav-links" class="nav-links">
+        <a href="#classes">Classes</a>
+        <a href="#gallery">The Gym</a>
+        <a href="#timetable">Timetable</a>
+        <a href="#prices">Prices</a>
+        <a href="#visit">Visit</a>
+        <a class="btn btn-small" data-booking href="#">Book a class</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-suits" aria-hidden="true"><span>♠</span><span>♥</span><span>♦</span><span>♣</span></div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="open-badge" id="open-badge"></p>
+          <h1>
+            <span class="h1-line"><span>Go all in.</span></span>
+            <span class="h1-sub" id="hero-title"></span>
+          </h1>
+          <p class="hero-intro" id="hero-intro"></p>
+          <div class="hero-cta">
+            <a class="btn" data-booking href="#">Book a class</a>
+            <a class="btn btn-ghost" href="#prices">See prices</a>
+          </div>
+        </div>
+        <img class="hero-badge" src="img/logo.png" alt="" aria-hidden="true">
+      </div>
+      <a class="scroll-cue" href="#classes" aria-label="Scroll to classes"><span></span></a>
+    </section>
+
+    <div class="ticker" aria-label="News">
+      <div class="ticker-track" id="ticker"></div>
+    </div>
+
+    <section class="stats" aria-label="Quick facts">
+      <div class="wrap stats-grid" id="stats"></div>
+    </section>
+
+    <section class="section" id="classes">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="suit-red">♥</span> Classes</p>
+          <h2>Pick your hand</h2>
+          <p class="lead">Six ways to train, every one of them coached. From your first session to your hardest.</p>
+        </div>
+        <div class="deck" id="deck"></div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="gallery">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span>♠</span> The gym</p>
+          <h2>3,750 sq ft of serious kit</h2>
+          <p class="lead">Plate-loaded machines, full dumbbell racks, a cardio deck and a boxing wall. Built for training, not posing.</p>
+        </div>
+        <div class="bento" id="bento"></div>
+      </div>
+    </section>
+
+    <section class="section" id="timetable">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="suit-red">♦</span> Timetable</p>
+          <h2>This week's classes</h2>
+          <p class="lead">Spaces fill fast, especially mornings. Book ahead in the Glofox app.</p>
+          <div class="placeholder-note" data-placeholder="timetable" hidden>Sample timetable. The real schedule comes from Glofox.</div>
+        </div>
+        <div class="table-scroll reveal">
+          <table class="timetable" id="timetable-table"></table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="equipment">
+      <div class="wrap equip-layout">
+        <div class="equip-photo reveal">
+          <img id="equip-photo" src="" alt="Cardio deck with treadmills and a StairMaster" loading="lazy">
+        </div>
+        <div>
+          <div class="section-head reveal">
+            <p class="eyebrow"><span>♣</span> Equipment</p>
+            <h2>Everything you need</h2>
+            <div class="placeholder-note" data-placeholder="equipment" hidden>From the gym's photos. Brands and counts to be confirmed.</div>
+          </div>
+          <div class="equip-grid" id="equip-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark section-felt" id="prices">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <p class="eyebrow"><span class="suit-red">♥</span> Membership <span class="suit-red">♦</span></p>
+          <h2>Place your bet</h2>
+          <div class="placeholder-note" data-placeholder="prices" hidden>Sample plans. Real prices to be added.</div>
+        </div>
+        <div class="price-grid" id="price-grid"></div>
+        <p class="price-note" id="price-note"></p>
+      </div>
+    </section>
+
+    <section class="section" id="team">
+      <div class="wrap">
+        <div class="story">
+          <div class="story-photo reveal">
+            <img id="story-photo" src="" alt="" loading="lazy">
+            <span class="story-stamp">Est.<b id="story-year"></b></span>
+          </div>
+          <div class="story-copy reveal">
+            <p class="eyebrow"><span>♠</span> Our story</p>
+            <h2 id="story-title"></h2>
+            <div id="story-text"></div>
+          </div>
+        </div>
+        <h3 class="sub-head reveal">The team</h3>
+        <div class="coach-grid" id="coach-grid"></div>
+        <div class="community" id="community"></div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="visit">
+      <div class="wrap visit-grid">
+        <div class="reveal">
+          <p class="eyebrow"><span class="suit-red">♦</span> Visit us</p>
+          <h2>Hours & location</h2>
+          <table class="hours" id="hours-table"></table>
+          <address id="address"></address>
+          <div class="visit-actions">
+            <a class="btn" id="call-btn" href="#">Call us</a>
+            <a class="btn btn-ghost" id="directions-btn" href="#" target="_blank" rel="noopener">Get directions</a>
+          </div>
+        </div>
+        <div class="map reveal">
+          <iframe id="map" title="Map showing All In Fitness, Blessington" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="wrap cta-inner reveal">
+        <h2>Ready to go all in?</h2>
+        <a class="btn btn-light" data-booking href="#">Book your first class</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="All In Fitness logo" width="88" height="88" loading="lazy">
+        <p class="footer-addr" id="footer-addr"></p>
+      </div>
+      <div class="social" id="social"></div>
+    </div>
+    <div class="wrap footer-base">
+      <span>&copy; <span id="year"></span> All In Fitness, Blessington</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <button class="lightbox-close" aria-label="Close">×</button>
+    <img src="" alt="">
+  </dialog>
+
+  <noscript>
+    <p class="noscript">All In Fitness, Unit 2, Burgage House, Burgage, Blessington, Co. Wicklow, W91 V065. Phone 045 900 372.</p>
+  </noscript>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
