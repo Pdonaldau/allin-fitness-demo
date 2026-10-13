@@ -1,25 +1,17 @@
 # CURRENT — All In Fitness website
 
-_Updated 2026-10-13 (gym's change requests applied). Live site last verified 2026-10-13 at commit `e189b0f`._
+_Updated 2026-10-13. Live site last verified 2026-10-13 at commit `ea4b896`._
 
 **Live site:** https://pdonaldau.github.io/allin-fitness-demo/ (GitHub Pages, public repo
 `Pdonaldau/allin-fitness-demo`, deploys from `main` root on every push, live in about a
 minute). A `noindex` meta tag in `index.html` keeps it out of search results until the
 `.ie` is live.
 
-## Uncommitted work — check `git status` first
+## Latest change
 
-Two batches are made locally but **not committed or pushed** (Paul hadn't said to yet):
-
-- Removed the "Largest gym in west Wicklow" claim; FAQ now says parking is free.
-- The gym's first round of change requests (9 items, listed in `DECISIONS.md` under
-  "Gym's change requests (round 1)"): new hero line and intro, "Membership options"
-  buttons at the top, "Book a class" moved to the Classes card, real equipment brands,
-  full team, GAA and AFC sponsor items, Instagram gallery tile.
-- Prerender already run, so `index.html` and `llms.txt` match.
-
-Ask Paul before committing and pushing. He reviews every change on the live site, so
-after a change, offer to commit and push.
+The gym's first round of change requests (9 items) is live at `ea4b896`. The list is in
+`DECISIONS.md` under "Gym's change requests (round 1)". Paul reviews every change on the
+live site, so after a change, offer to commit and push.
 
 ## Goal
 
