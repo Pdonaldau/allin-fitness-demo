@@ -5,7 +5,7 @@
 // demo and must be replaced with the gym's real details before going live.
 
 window.SITE = {
-  // Set to false once real prices, timetable and photos are in.
+  // Set to false once real equipment details and photos are in.
   demo: true,
 
   name: "All In Fitness",
@@ -20,8 +20,9 @@ window.SITE = {
   mapQuery: "All In Fitness, Unit 2, Burgage House, Blessington, Co. Wicklow, W91 V065",
 
   // The gym's Glofox portal (from their Instagram link in bio). "Book a class" buttons
-  // open the class timetable; "Join now" buttons open memberships, where people
-  // register and buy. Glofox handles signup and forms, not this site.
+  // open Glofox classes; "Join now" buttons open memberships, where people register
+  // and buy. Glofox handles signup and forms, not this site. The site never lists
+  // class times: the gym wants times given on enquiry.
   glofox: {
     classes: "https://app.glofox.com/portal/#/branch/5d1b81034602ae00a6331853/classes-day-view?header=classes,courses,memberships,trainers,facilities",
     memberships: "https://app.glofox.com/portal/#/branch/5d1b81034602ae00a6331853/memberships?header=classes,courses,memberships,trainers,facilities",
@@ -36,8 +37,6 @@ window.SITE = {
   // its `until` date (YYYY-MM-DD). Leave the list empty to show class names only.
   news: [
     { text: "Free trial weekend · Sat 3 & Sun 4 October · Over 18s", until: "2026-10-04" },
-    { text: "Boxing is back on Tuesday evenings", until: "2026-10-31" },
-    { text: "Strength class blocks every Tuesday & Thursday", until: "2026-12-31" },
   ],
 
   // Times are 24-hour, Irish time. Days 0 = Sunday ... 6 = Saturday.
@@ -57,8 +56,9 @@ window.SITE = {
 
   // Two playing cards: Training first, because the gym wants to be known as a training
   // gym. Class names come from their Glofox (checked 2026-10-13); the line-up changes, so
-  // the card tells people to check. Suit: spade, heart, diamond or club. `link` picks the
-  // Glofox page the button opens (classes or memberships).
+  // the card tells people to ask. Never list class days or times (gym request). Suit:
+  // spade, heart, diamond or club. `link` picks where the button goes: classes or
+  // memberships (Glofox), or visit (the contact section on this page).
   programmes: [
     {
       name: "Training", suit: "spade", tag: "Coached",
@@ -68,9 +68,9 @@ window.SITE = {
     },
     {
       name: "Classes", suit: "heart", tag: "All levels",
-      text: "Group classes most days. The line-up changes through the year, so check the app or ask at the desk.",
+      text: "Class times change through the year, so ask us what's on. Call, message us, or ask at the desk.",
       items: ["All In Strength", "All In Conditioning", "All In Hybrid", "HYROX", "Men's Boxing", "Ladies' Boxing"],
-      button: "See this week's classes", link: "classes",
+      button: "Enquire about classes", link: "visit",
     },
   ],
 
@@ -83,19 +83,6 @@ window.SITE = {
     { src: "img/floor-wide.webp", alt: "Wide view of the free weights area", size: "small" },
     { src: "img/floor-strength.webp", alt: "Strength machines and benches", size: "small" },
   ],
-
-  // PLACEHOLDER timetable — replace with the real Glofox schedule.
-  timetable: {
-    placeholder: true,
-    days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    slots: [
-      { time: "06:30", classes: ["HIIT", "Strength", "BETA", "Strength", "HIIT", "", ""] },
-      { time: "09:30", classes: ["", "", "Conditioning", "", "", "BETA", "Conditioning"] },
-      { time: "11:00", classes: ["", "", "", "", "", "HIIT", ""] },
-      { time: "18:30", classes: ["BETA", "Boxing", "Strength", "BETA", "", "", ""] },
-      { time: "19:30", classes: ["Conditioning", "HIIT", "", "Strength", "", "", ""] },
-    ],
-  },
 
   // Seen in the gym's photos; confirm brands and counts with the gym.
   equipment: {

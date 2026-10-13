@@ -37,12 +37,16 @@ site while the gym gets its `.ie` domain.
 - Checked locally on 2026-10-02 at 1440px and 390px: no console errors, no horizontal
   scroll, the lightbox opens and closes, and the map pins the gym.
 
+**No class times on the site.** The gym wants class days and times given on request.
+There is no timetable section, and the Classes card's button goes to the contact
+section. Don't add times to the cards, the ticker, or the news items.
+
 ## Real vs placeholder
 
 | Real (public sources, the gym's photos, or their Glofox) | Placeholder — get from the gym |
 |---|---|
-| Address, phone, opening hours, logo, photos | Class timetable (partly matches their posts) |
-| 3,750 sq ft, est. 2019, GAA link, running club | Exact equipment brands and counts |
+| Address, phone, opening hours, logo, photos | Exact equipment brands and counts |
+| 3,750 sq ft, est. 2019, GAA link, running club | |
 | Prices, from Glofox memberships (checked 2026-10-13) | Instagram URL |
 | Glofox links: "Book a class" opens classes, "Join now" opens memberships | |
 | Facebook URL | |
@@ -51,8 +55,7 @@ site while the gym gets its `.ie` domain.
 book, register, buy memberships and fill in forms. The site only links to it. The portal
 also lists their real classes (All In Strength, All In Conditioning, All In Hybrid, HYROX,
 Men's Boxing, Ladies' Boxing, Small Group Training) and trainers (Eamonn Blake, Jordan
-Lynch, Dan Courtney, Aidan King, Robyn Nolan). The Classes card lists these. The timetable
-is still a placeholder with made-up class names.
+Lynch, Dan Courtney, Aidan King, Robyn Nolan). The Classes card lists these class names.
 
 The team section shows only the two co-founders, Eamonn Blake and Jordan Lynch, at the
 gym's request. Glofox confirms the spelling "Eamonn". The two people in the birthday photo
@@ -70,8 +73,7 @@ gitignored because this repo is public. Never put them in a committed file.
 
 ## Next step
 
-1. Collect the placeholder items above from the gym. The timetable could be replaced
-   by a link to Glofox, which is always current.
+1. Collect the placeholder items above from the gym.
 2. When the gym has the `.ie` domain: add it under the repo's Pages settings and send
    them the DNS records.
 3. At go-live: set `demo: false` and remove the `noindex` tag.

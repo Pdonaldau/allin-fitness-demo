@@ -3,6 +3,14 @@
 Newest first. `CURRENT.md` holds what is true now; this file keeps the reasoning for
 what it replaced.
 
+## 2026-10-13 — Timetable removed
+
+- **Was:** a weekly timetable table (placeholder times and class names), a "Timetable"
+  menu link, and news items naming class days ("Boxing is back on Tuesday evenings",
+  "Strength class blocks every Tuesday & Thursday").
+- **Now:** no class times anywhere. The gym wants times given on request, so the
+  Classes card says to ask and its button goes to the contact section.
+
 ## 2026-10-13 — Class section: six cards became two
 
 - **Was:** six playing cards, one per class (BETA, Strength, HIIT, Conditioning, Boxing,

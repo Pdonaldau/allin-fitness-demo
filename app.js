@@ -19,7 +19,7 @@
   // --- Demo flags ---------------------------------------------------------
   if (S.demo) {
     $("#demo-bar").hidden = false;
-    for (const key of ["timetable", "equipment", "prices"]) {
+    for (const key of ["equipment", "prices"]) {
       if (S[key] && S[key].placeholder) $(`[data-placeholder="${key}"]`).hidden = false;
     }
   }
@@ -108,33 +108,6 @@
   });
   lightbox.addEventListener("click", () => lightbox.close());
 
-  // --- Timetable ----------------------------------------------------------
-  const tt = S.timetable;
-  // Each class name in the timetable gets a suit, cycling through the four in order.
-  const suitNames = Object.keys(SUITS);
-  const classSuit = {};
-  tt.slots.flatMap((s) => s.classes).filter(Boolean).forEach((name) => {
-    if (!(name in classSuit)) classSuit[name] = suitNames[Object.keys(classSuit).length % 4];
-  });
-  const todayIdx = (dublinNow().day + 6) % 7; // Monday-first index
-  $("#timetable-table").innerHTML =
-    `<thead><tr><th scope="col">Time</th>${tt.days
-      .map((d, i) => `<th scope="col"${i === todayIdx ? ' class="today"' : ""}>${esc(d)}${i === todayIdx ? " <small>today</small>" : ""}</th>`)
-      .join("")}</tr></thead><tbody>` +
-    tt.slots
-      .map(
-        (row) =>
-          `<tr><th scope="row">${esc(row.time)}</th>${row.classes
-            .map((c, i) => {
-              const suit = classSuit[c];
-              const pill = c ? `<span class="pill${isRed(suit) ? " red" : ""}"><i aria-hidden="true">${SUITS[suit] || ""}</i>${esc(c)}</span>` : "";
-              return `<td${i === todayIdx ? ' class="today"' : ""}>${pill}</td>`;
-            })
-            .join("")}</tr>`
-      )
-      .join("") +
-    "</tbody>";
-
   // --- Equipment ----------------------------------------------------------
   $("#equip-photo").src = S.equipment.photo;
   $("#equip-grid").innerHTML = S.equipment.groups
@@ -155,8 +128,10 @@
     .join("");
   $("#price-note").textContent = S.prices.note;
 
-  // --- Glofox links: data-booking="memberships" opens memberships, the rest open classes
+  // --- Glofox links: data-booking="memberships" opens memberships, "visit" jumps to
+  // the contact section, and the rest open Glofox classes.
   document.querySelectorAll("[data-booking]").forEach((a) => {
+    if (a.dataset.booking === "visit") { a.href = "#visit"; return; }
     const url = a.dataset.booking === "memberships" ? S.glofox.memberships : S.glofox.classes;
     if (!url) return;
     a.href = url;

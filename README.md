@@ -5,7 +5,7 @@ it runs on any static host.
 
 ## Editing content
 
-Every piece of content is in `data.js`: hours, prices, classes, timetable, equipment,
+Every piece of content is in `data.js`: hours, prices, classes, equipment,
 coaches, social links and the booking link. Change the values there, save, and refresh
 the page. Do not edit `app.js` to change content.
 
