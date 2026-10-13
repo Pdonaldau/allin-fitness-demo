@@ -22,10 +22,8 @@ for feedback, while they buy their `.ie` domain.
 ## Open questions (waiting on Paul or the gym)
 
 1. **Gym feedback** on the live site. Paul is collecting it.
-2. **Brand spellings.** The gym wrote "Lifefitness", "Concept" and "Gymgear"; the site
-   says Life Fitness, Concept2 and Gym Gear. Confirm "Concept" means Concept2.
-3. **Full-size photos and a vector logo.** Some images are 206px thumbnails from Facebook.
-4. **Google Business Profile:** who manages it, so the site link goes on it at go-live.
+2. **Full-size photos and a vector logo.** Some images are 206px thumbnails from Facebook.
+3. **Google Business Profile:** who manages it, so the site link goes on it at go-live.
 
 ## Offered, not started (Paul hasn't said yes yet)
 
@@ -81,9 +79,9 @@ for feedback, while they buy their `.ie` domain.
 
 | Real (public sources, the gym, or their Glofox) | Unconfirmed — ask the gym |
 |---|---|
-| Address, phone, opening hours, logo, photos | Concept2 spelling (see open questions) |
+| Address, phone, opening hours, logo, photos | Sponsor item lines (GAA, AFC) written by us |
 | 5,000 sq ft, est. 2019, free parking, GAA and AFC sponsorship | |
-| Hero line, intro, equipment brands and team, from the gym | |
+| Hero line, intro, equipment brands and team, from the gym ("Concept" taken as Concept2) | |
 | Prices from Glofox memberships (checked 2026-10-13) | |
 | Facebook and Instagram (@aif_blessington) | |
 
