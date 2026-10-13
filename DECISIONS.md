@@ -3,6 +3,13 @@
 Newest first. `CURRENT.md` holds what is true now; this file keeps the reasoning for
 what it replaced.
 
+## 2026-10-13 — Demo banner and placeholder notes removed
+
+- **Was:** `demo: true` in `data.js` showed a striped "Demo site" banner and yellow
+  notes such as "From the gym's photos. Brands and counts to be confirmed."
+- **Now:** removed from the markup, code and CSS, so the gym reviews a clean site.
+  Unconfirmed content is still marked `placeholder: true` in `data.js`.
+
 ## 2026-10-13 — Timetable removed
 
 - **Was:** a weekly timetable table (placeholder times and class names), a "Timetable"

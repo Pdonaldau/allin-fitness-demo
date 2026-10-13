@@ -16,14 +16,6 @@
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.2A4.8 4.8 0 1 0 12 16.8 4.8 4.8 0 0 0 12 7.2zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2zM17 6a1.1 1.1 0 1 0 0 2.2A1.1 1.1 0 0 0 17 6zM21 8.1c-.1-1.6-.4-3-1.6-4.2S16.9 2.4 15.3 2.3C13.7 2.2 10.3 2.2 8.7 2.3 7.1 2.4 5.7 2.7 4.5 3.9S3 6.5 2.9 8.1c-.1 1.6-.1 6.2 0 7.8.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 5 .1 6.6 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-6.2-.1-7.8zm-2 9.8c-.3.9-1 1.5-1.9 1.9-1.3.5-4.4.4-5.1.4s-3.9.1-5.1-.4c-.9-.3-1.5-1-1.9-1.9-.5-1.3-.4-4.4-.4-5.9s-.1-4.6.4-5.9c.3-.9 1-1.5 1.9-1.9 1.3-.5 4.4-.4 5.1-.4s3.9-.1 5.1.4c.9.3 1.5 1 1.9 1.9.5 1.3.4 4.4.4 5.9s.1 4.6-.4 5.9z"/></svg>',
   };
 
-  // --- Demo flags ---------------------------------------------------------
-  if (S.demo) {
-    $("#demo-bar").hidden = false;
-    for (const key of ["equipment", "prices"]) {
-      if (S[key] && S[key].placeholder) $(`[data-placeholder="${key}"]`).hidden = false;
-    }
-  }
-
   // --- Hero ---------------------------------------------------------------
   $("#hero-title").textContent = S.tagline;
   $("#hero-intro").textContent = S.intro;
@@ -167,6 +159,7 @@
     .join("");
 
   const badge = $("#open-badge");
+  badge.hidden = false; // Hidden in the prerendered HTML because it depends on the time.
   const todayHours = S.hours.find((h) => h.days.includes(now.day));
   if (todayHours && now.mins >= toMins(todayHours.open) && now.mins < toMins(todayHours.close)) {
     badge.textContent = `Open now · until ${todayHours.close}`;
@@ -184,6 +177,11 @@
   $("#directions-btn").href = `https://www.google.com/maps/dir/?api=1&destination=${q}`;
   $("#map").src = `https://www.google.com/maps?q=${q}&output=embed`;
 
+  // --- FAQ ----------------------------------------------------------------
+  $("#faq-list").innerHTML = S.faq
+    .map((f) => `<details class="faq reveal"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`)
+    .join("");
+
   // --- Social -------------------------------------------------------------
   $("#social").innerHTML = Object.entries(S.social)
     .filter(([, url]) => url)
@@ -191,32 +189,68 @@
     .join("");
   $("#year").textContent = new Date().getFullYear();
 
-  // --- Structured data for Google (local business listing) ---------------
-  const ld = document.createElement("script");
+  // --- Structured data for Google and AI tools ---------------------------
+  // tools/prerender.py bakes this into index.html, so reuse that tag if it exists.
+  const ld = $("#structured-data") || document.head.appendChild(document.createElement("script"));
+  ld.id = "structured-data";
   ld.type = "application/ld+json";
+  const gymId = `${S.siteUrl}#gym`;
   ld.textContent = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "ExerciseGym",
-    name: S.name,
-    telephone: S.phoneIntl,
-    foundingDate: String(S.founded),
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Unit 2, Burgage House, Burgage",
-      addressLocality: "Blessington",
-      addressRegion: "Co. Wicklow",
-      postalCode: "W91 V065",
-      addressCountry: "IE",
-    },
-    openingHoursSpecification: S.hours.map((h) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: h.days.map((d) => dayNames[d]),
-      opens: h.open,
-      closes: h.close,
-    })),
-    sameAs: Object.values(S.social).filter(Boolean),
+    "@graph": [
+      {
+        "@type": "ExerciseGym",
+        "@id": gymId,
+        name: S.name,
+        url: S.siteUrl,
+        description: S.intro,
+        image: `${S.siteUrl}img/hero.webp`,
+        logo: `${S.siteUrl}img/logo.png`,
+        telephone: S.phoneIntl,
+        foundingDate: String(S.founded),
+        founder: S.coaches.filter((c) => /founder/i.test(c.role)).map((c) => ({ "@type": "Person", name: c.name })),
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Unit 2, Burgage House, Burgage",
+          addressLocality: "Blessington",
+          addressRegion: "Co. Wicklow",
+          postalCode: "W91 V065",
+          addressCountry: "IE",
+        },
+        hasMap: `https://www.google.com/maps?q=${encodeURIComponent(S.mapQuery)}`,
+        openingHoursSpecification: S.hours.map((h) => ({
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: h.days.map((d) => dayNames[d]),
+          opens: h.open,
+          closes: h.close,
+        })),
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Memberships",
+          itemListElement: S.prices.plans.map((p) => ({
+            "@type": "Offer",
+            name: p.name,
+            price: p.price.replace(/[^\d.]/g, ""),
+            priceCurrency: "EUR",
+            description: p.features.join(". "),
+            url: S.glofox.memberships,
+          })),
+        },
+        knowsAbout: S.programmes.flatMap((p) => p.items),
+        sameAs: Object.values(S.social).filter(Boolean),
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${S.siteUrl}#faq`,
+        about: { "@id": gymId },
+        mainEntity: S.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
   });
-  document.head.appendChild(ld);
 
   // --- Motion: scroll reveals, count-ups, hero parallax, nav state -------
   const counted = new WeakSet();

@@ -1,6 +1,6 @@
 # CURRENT — All In Fitness demo site
 
-_Updated 2026-10-13. Live site last verified 2026-10-02 (blue + founders change not yet pushed)._
+_Updated 2026-10-13. Live site last verified 2026-10-13._
 
 **Live demo:** https://pdonaldau.github.io/allin-fitness-demo/ (GitHub Pages, public repo
 `Pdonaldau/allin-fitness-demo`, deploys from `main` root on every push). A `noindex` meta tag
@@ -9,14 +9,22 @@ in `index.html` keeps the demo out of search results — remove it at go-live.
 ## Goal
 
 All In Fitness (Blessington, Co. Wicklow) accepted the offer on 2026-10-13: the website
-in exchange for two memberships (Paul and his son). Now refining the demo into the real
+in exchange for two memberships (Paul and his son). Now refining the site into the real
 site while the gym gets its `.ie` domain.
 
 ## State
 
-- Static one-page site: `index.html`, `styles.css`, `app.js`, `data.js`. No build step,
+- Static one-page site: `index.html`, `styles.css`, `app.js`, `data.js`. One prerender step,
   no forms, no backend.
 - **All content is in `data.js`.** `app.js` renders it. Edit content only in `data.js`.
+- **Prerender after every change:** `py -3 tools/prerender.py` runs `app.js` in headless
+  Chromium and writes the result into `index.html`, plus `llms.txt`. AI crawlers don't
+  run JavaScript, so a stale `index.html` means they see old content. Running it twice
+  gives the same file. `index.html` is both the template and the output.
+- **SEO / AI groundwork (done 2026-10-13):** prerendered HTML, structured data
+  (`ExerciseGym` with founders, prices and hours, plus `FAQPage`) baked into the head,
+  an FAQ section (`faq` in `data.js`), and `llms.txt`. Domain-dependent steps wait for
+  the `.ie` (see Next step).
 - **Design (v2):** built on the gym's own brand. Their logo is a circular badge with
   playing-card suits ("All In" is a poker reference), and their Facebook posts are black
   and white. The site uses black and white with a blue accent (`--accent` in `styles.css`,
@@ -32,8 +40,9 @@ site while the gym gets its `.ie` domain.
   same picture. Ask the gym for full-size photos and a vector logo.
 - **News ticker:** items in `data.js` → `news` hide after their `until` date. The free
   trial weekend item expires after 2026-10-04.
-- `demo: true` shows a striped banner and "sample" notes. Set it to `false` when real
-  content is in.
+- **No demo banner or placeholder notes** (removed 2026-10-13 before showing the gym).
+  The equipment list is still unconfirmed; `placeholder: true` in `data.js` tracks it,
+  but nothing on the page says so.
 - Checked locally on 2026-10-02 at 1440px and 390px: no console errors, no horizontal
   scroll, the lightbox opens and closes, and the map pins the gym.
 
@@ -73,9 +82,14 @@ gitignored because this repo is public. Never put them in a committed file.
 
 ## Next step
 
-1. Collect the placeholder items above from the gym.
+1. Paul is showing the site to the gym (2026-10-13) for feedback. Collect their changes
+   and the placeholder items above.
 2. When the gym has the `.ie` domain: add it under the repo's Pages settings and send
    them the DNS records.
-3. At go-live: set `demo: false` and remove the `noindex` tag.
+3. At go-live: set `siteUrl` in `data.js` to the `.ie`, remove the
+   `noindex` tag, make `og:image` an absolute URL, add a canonical link, `robots.txt`
+   and `sitemap.xml`, then run `py -3 tools/prerender.py`.
+4. After go-live: verify the domain in Google Search Console, submit the sitemap, and
+   ask the gym to put the site link on their Google Business Profile.
 
 `gh` CLI is installed but not logged in. Pushing works through git's stored credentials.

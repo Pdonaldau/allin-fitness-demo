@@ -1,18 +1,19 @@
 // All site content lives here. Edit this file to change hours, prices, classes,
 // equipment, coaches, news or links — no other file needs to change.
 //
-// Anything marked `placeholder: true` (or listed under `demo`) is invented for the
-// demo and must be replaced with the gym's real details before going live.
+// Anything marked `placeholder: true` is not yet confirmed by the gym. Check it before
+// going live. The site no longer shows placeholder notes.
 
 window.SITE = {
-  // Set to false once real equipment details and photos are in.
-  demo: true,
-
   name: "All In Fitness",
   tagline: "Blessington's biggest gym",
   intro:
-    "5,000 sq ft of serious kit, classes every day and coaches who know your name. Whatever your level, you're welcome here.",
+    "5,000 sq ft of serious kit, training for every level and coaches who know your name. Whatever your level, you're welcome here.",
   founded: 2019,
+
+  // The site's public address. Used in structured data and llms.txt. Change it to the
+  // gym's .ie domain at go-live, then run `py -3 tools/prerender.py`.
+  siteUrl: "https://pdonaldau.github.io/allin-fitness-demo/",
 
   phone: "045 900 372",
   phoneIntl: "+35345900372",
@@ -123,6 +124,36 @@ window.SITE = {
   coaches: [
     { name: "Eamonn Blake", role: "Co-founder" },
     { name: "Jordan Lynch", role: "Co-founder" },
+  ],
+
+  // Questions and answers. Shown on the page and given to Google and AI tools as an
+  // FAQ. Keep prices and class names here in step with `prices` and `programmes`.
+  // Never put class days or times here (gym request).
+  faq: [
+    {
+      q: "Where is All In Fitness?",
+      a: "Unit 2, Burgage House, Burgage, Blessington, Co. Wicklow, W91 V065. Call us on 045 900 372.",
+    },
+    {
+      q: "How much is a gym membership?",
+      a: "€59 a month (plus a €20 joining fee, with a 3-month minimum), €195 for 3 months, or €525 for a year. Student and OAP memberships are €169 for 3 months or €425 for a year. Every membership includes the full gym and all classes.",
+    },
+    {
+      q: "Do you offer personal training?",
+      a: "Yes. We offer one-to-one personal training, small group training and online programmes. Call us or ask at the desk to get started.",
+    },
+    {
+      q: "What classes do you run?",
+      a: "All In Strength, All In Conditioning, All In Hybrid, HYROX, Men's Boxing and Ladies' Boxing. Class times change through the year, so call us or ask at the desk for what's on.",
+    },
+    {
+      q: "Do you train sports teams?",
+      a: "Yes. We run strength and conditioning for local GAA and soccer teams.",
+    },
+    {
+      q: "How do I join?",
+      a: "Buy a membership online through Glofox, or call in to the gym. You register on Glofox, which is also where you fill in the gym's forms and book.",
+    },
   ],
 
   community: [

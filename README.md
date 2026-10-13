@@ -1,13 +1,24 @@
 # All In Fitness — website
 
-A static one-page site for All In Fitness, Blessington. There is no build step, and
-it runs on any static host.
+A static one-page site for All In Fitness, Blessington. It runs on any static host.
 
 ## Editing content
 
-Every piece of content is in `data.js`: hours, prices, classes, equipment,
-coaches, social links and the booking link. Change the values there, save, and refresh
-the page. Do not edit `app.js` to change content.
+Every piece of content is in `data.js`: hours, prices, training and classes, FAQ,
+equipment, coaches, social links and the Glofox links. Change the values there, save,
+and refresh the page. Do not edit `app.js` to change content.
+
+After any change to `data.js`, `index.html` or `app.js`, run:
+
+```powershell
+py -3 tools/prerender.py
+```
+
+This writes the rendered page into `index.html` as plain HTML and regenerates
+`llms.txt`. Google runs JavaScript, but most AI crawlers don't; without this step they
+see an almost empty page. If you forget, the site still works for visitors, but
+crawlers see the old content. The script needs Playwright
+(`py -3 -m pip install playwright`, then `py -3 -m playwright install chromium`).
 
 ## Adding photos
 
@@ -45,4 +56,4 @@ the domain's DNS records at the host, as the host's instructions describe.
 1. Replace every placeholder in `data.js` (search for `PLACEHOLDER` and `placeholder: true`).
 2. Add the Instagram URL. The Glofox links are in `glofox` in `data.js`.
 3. Swap the 206px thumbnails in `img/` for full-size photos from the gym.
-4. Set `demo: false` in `data.js`.
+4. Run `py -3 tools/prerender.py`.
