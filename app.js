@@ -27,15 +27,11 @@
   // --- Hero ---------------------------------------------------------------
   $("#hero-title").textContent = S.tagline;
   $("#hero-intro").textContent = S.intro;
-  document.querySelectorAll("[data-booking]").forEach((a) => {
-    a.href = S.bookingUrl;
-    if (S.bookingUrl !== "#") { a.target = "_blank"; a.rel = "noopener"; }
-  });
 
-  // --- Ticker: live news first, then the class names ---------------------
+  // --- Ticker: live news first, then what's on each programme card -------
   const today = new Date().toISOString().slice(0, 10);
   const news = (S.news || []).filter((n) => !n.until || n.until >= today).map((n) => n.text);
-  const tickerItems = [...news, ...S.classes.map((c) => c.name)];
+  const tickerItems = [...news, ...S.programmes.flatMap((p) => p.items)];
   const suitCycle = ["♠", "♥", "♦", "♣"];
   const tickerRun = tickerItems
     .map((t, i) => `<span class="ticker-item">${esc(t)}</span><span class="ticker-suit">${suitCycle[i % 4]}</span>`)
@@ -53,8 +49,8 @@
     })
     .join("");
 
-  // --- Classes, dealt as playing cards -----------------------------------
-  $("#deck").innerHTML = S.classes
+  // --- Training and classes, dealt as playing cards ----------------------
+  $("#deck").innerHTML = S.programmes
     .map((c, i) => {
       const pip = SUITS[c.suit] || "♠";
       const corner = `<span>${esc(c.name[0])}</span><span>${pip}</span>`;
@@ -63,9 +59,11 @@
           <div class="pc-corner tl" aria-hidden="true">${corner}</div>
           <div class="pc-corner br" aria-hidden="true">${corner}</div>
           <div class="pc-pip" aria-hidden="true">${pip}</div>
-          <span class="tag">${esc(c.level)}</span>
+          <span class="tag">${esc(c.tag)}</span>
           <h3>${esc(c.name)}</h3>
           <p>${esc(c.text)}</p>
+          <ul class="pc-list">${c.items.map((x) => `<li><i aria-hidden="true">${pip}</i>${esc(x)}</li>`).join("")}</ul>
+          <a class="btn" data-booking="${esc(c.link)}" href="#">${esc(c.button)}</a>
         </div>
       </article>`;
     })
@@ -112,7 +110,12 @@
 
   // --- Timetable ----------------------------------------------------------
   const tt = S.timetable;
-  const classSuit = Object.fromEntries(S.classes.map((c) => [c.name, c.suit]));
+  // Each class name in the timetable gets a suit, cycling through the four in order.
+  const suitNames = Object.keys(SUITS);
+  const classSuit = {};
+  tt.slots.flatMap((s) => s.classes).filter(Boolean).forEach((name) => {
+    if (!(name in classSuit)) classSuit[name] = suitNames[Object.keys(classSuit).length % 4];
+  });
   const todayIdx = (dublinNow().day + 6) % 7; // Monday-first index
   $("#timetable-table").innerHTML =
     `<thead><tr><th scope="col">Time</th>${tt.days
@@ -142,15 +145,24 @@
   $("#price-grid").innerHTML = S.prices.plans
     .map(
       (p, i) => `<article class="price-card reveal${p.featured ? " featured" : ""}" style="--i:${i}">
-        ${p.featured ? '<span class="chip" aria-hidden="true">ALL<br>IN</span><span class="tag tag-accent">Most popular</span>' : ""}
+        ${p.featured ? '<span class="chip" aria-hidden="true">ALL<br>IN</span><span class="tag tag-accent">Best value</span>' : ""}
         <h3>${esc(p.name)}</h3>
         <div class="price">${esc(p.price)}<span>${esc(p.period)}</span></div>
         <ul>${p.features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>
-        <a class="btn ${p.featured ? "" : "btn-ghost"}" data-booking href="${esc(S.bookingUrl)}">Join now</a>
+        <a class="btn ${p.featured ? "" : "btn-ghost"}" data-booking="memberships" href="#">Join now</a>
       </article>`
     )
     .join("");
   $("#price-note").textContent = S.prices.note;
+
+  // --- Glofox links: data-booking="memberships" opens memberships, the rest open classes
+  document.querySelectorAll("[data-booking]").forEach((a) => {
+    const url = a.dataset.booking === "memberships" ? S.glofox.memberships : S.glofox.classes;
+    if (!url) return;
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
 
   // --- Story, team, community --------------------------------------------
   const st = S.story;

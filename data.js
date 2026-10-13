@@ -19,15 +19,20 @@ window.SITE = {
   address: ["Unit 2, Burgage House", "Burgage, Blessington", "Co. Wicklow", "W91 V065"],
   mapQuery: "All In Fitness, Unit 2, Burgage House, Blessington, Co. Wicklow, W91 V065",
 
-  // Glofox booking page. Replace with the gym's own Glofox link.
-  bookingUrl: "#",
+  // The gym's Glofox portal (from their Instagram link in bio). "Book a class" buttons
+  // open the class timetable; "Join now" buttons open memberships, where people
+  // register and buy. Glofox handles signup and forms, not this site.
+  glofox: {
+    classes: "https://app.glofox.com/portal/#/branch/5d1b81034602ae00a6331853/classes-day-view?header=classes,courses,memberships,trainers,facilities",
+    memberships: "https://app.glofox.com/portal/#/branch/5d1b81034602ae00a6331853/memberships?header=classes,courses,memberships,trainers,facilities",
+  },
 
   social: {
     facebook: "https://www.facebook.com/allinfitnessblessington/",
     instagram: "", // Instagram handle not confirmed — add full URL here
   },
 
-  // News shown in the scrolling red band. Each item disappears by itself after
+  // News shown in the scrolling blue band. Each item disappears by itself after
   // its `until` date (YYYY-MM-DD). Leave the list empty to show class names only.
   news: [
     { text: "Free trial weekend · Sat 3 & Sun 4 October · Over 18s", until: "2026-10-04" },
@@ -50,14 +55,23 @@ window.SITE = {
     { value: "Free", label: "Parking on site" },
   ],
 
-  // Each class is dealt as a playing card. Suit: spade, heart, diamond or club.
-  classes: [
-    { name: "BETA", suit: "spade", level: "Advanced", text: "Our signature high-intensity session. Short, sharp and built to test you." },
-    { name: "Strength", suit: "heart", level: "All levels", text: "Coached blocks every Tuesday & Thursday. Learn the lifts properly and get stronger week on week." },
-    { name: "HIIT", suit: "diamond", level: "All levels", text: "Intervals that push the heart rate up and keep it there. Scaled to suit everyone in the room." },
-    { name: "Conditioning", suit: "club", level: "All levels", text: "Engine-building circuits for fitness that carries over to sport and everyday life." },
-    { name: "Boxing", suit: "spade", level: "All levels", text: "Back on Tuesday evenings. Pads, bags and footwork — a full-body workout that's as much fun as it is tough." },
-    { name: "Yoga", suit: "heart", level: "Beginner friendly", text: "Thursday mornings. Mobility, flexibility and a chance to slow down — the perfect partner to hard training." },
+  // Two playing cards: Training first, because the gym wants to be known as a training
+  // gym. Class names come from their Glofox (checked 2026-10-13); the line-up changes, so
+  // the card tells people to check. Suit: spade, heart, diamond or club. `link` picks the
+  // Glofox page the button opens (classes or memberships).
+  programmes: [
+    {
+      name: "Training", suit: "spade", tag: "Coached",
+      text: "Proper coaching built around you, from your first lift to match day.",
+      items: ["Small group training", "One-to-one personal training", "Strength & conditioning for teams", "Online programmes"],
+      button: "Book training", link: "classes",
+    },
+    {
+      name: "Classes", suit: "heart", tag: "All levels",
+      text: "Group classes most days. The line-up changes through the year, so check the app or ask at the desk.",
+      items: ["All In Strength", "All In Conditioning", "All In Hybrid", "HYROX", "Men's Boxing", "Ladies' Boxing"],
+      button: "See this week's classes", link: "classes",
+    },
   ],
 
   // Photos from the gym's Facebook page. `size`: big, tall or small (grid layout).
@@ -76,7 +90,7 @@ window.SITE = {
     days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     slots: [
       { time: "06:30", classes: ["HIIT", "Strength", "BETA", "Strength", "HIIT", "", ""] },
-      { time: "09:30", classes: ["", "", "Conditioning", "Yoga", "", "BETA", "Conditioning"] },
+      { time: "09:30", classes: ["", "", "Conditioning", "", "", "BETA", "Conditioning"] },
       { time: "11:00", classes: ["", "", "", "", "", "HIIT", ""] },
       { time: "18:30", classes: ["BETA", "Boxing", "Strength", "BETA", "", "", ""] },
       { time: "19:30", classes: ["Conditioning", "HIIT", "", "Strength", "", "", ""] },
@@ -96,13 +110,15 @@ window.SITE = {
   },
 
   // PLACEHOLDER prices — replace with the gym's real price list.
+  // From the gym's Glofox memberships page, checked 2026-10-13. Every plan includes
+  // full gym access and all classes.
   prices: {
-    placeholder: true,
-    note: "Student, family and off-peak rates available — ask at the desk.",
+    placeholder: false,
+    note: "Student and OAP rates: €169 for 3 months or €425 for a year. Buy any membership through Glofox.",
     plans: [
-      { name: "Gym Only", price: "€XX", period: "/month", features: ["Full gym access", "All opening hours", "Free parking"] },
-      { name: "Go All In", price: "€XX", period: "/month", featured: true, features: ["Full gym access", "Unlimited classes", "Book through the Glofox app"] },
-      { name: "Class Pack", price: "€XX", period: "/6 classes", features: ["6 classes per month", "Any class on the timetable", "Great for getting started"] },
+      { name: "Monthly", price: "€59", period: "/month", features: ["Full gym and all classes", "€20 joining fee", "3-month minimum, 2 weeks' notice to cancel"] },
+      { name: "Annual", price: "€525", period: "/year", featured: true, features: ["Full gym and all classes", "One payment, no direct debits", "Works out under €44 a month"] },
+      { name: "3 Months", price: "€195", period: "/3 months", features: ["Full gym and all classes", "One payment, no direct debits", "Nothing to cancel"] },
     ],
   },
 
@@ -116,12 +132,10 @@ window.SITE = {
     ],
   },
 
-  // From a 2020 news article — confirm names and roles with the gym.
+  // Founders only, at the gym's request. Names from a 2020 news article — confirm spelling.
   coaches: [
     { name: "Eamonn Blake", role: "Co-founder" },
     { name: "Jordan Lynch", role: "Co-founder" },
-    { name: "Kevin Cooney", role: "Coach & Director" },
-    { name: "Amy Burke", role: "Coach" },
   ],
 
   community: [
