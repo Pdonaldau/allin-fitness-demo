@@ -46,6 +46,9 @@ site while the gym gets its `.ie` domain.
 - Checked locally on 2026-10-02 at 1440px and 390px: no console errors, no horizontal
   scroll, the lightbox opens and closes, and the map pins the gym.
 
+**Personal training is enquiry only.** One-to-one PT is run by the individual trainers,
+not the gym, so the Training card's button goes to the contact section, never to Glofox.
+
 **No class times on the site.** The gym wants class days and times given on request.
 There is no timetable section, and the Classes card's button goes to the contact
 section. Don't add times to the cards, the ticker, or the news items.
@@ -56,9 +59,9 @@ section. Don't add times to the cards, the ticker, or the news items.
 |---|---|
 | Address, phone, opening hours, logo, photos | Exact equipment brands and counts |
 | 5,000 sq ft (gym confirmed 2026-10-13), est. 2019, GAA link, running club | |
-| Prices, from Glofox memberships (checked 2026-10-13) | Instagram URL |
+| Prices, from Glofox memberships (checked 2026-10-13) | |
 | Glofox links: "Book a class" opens classes, "Join now" opens memberships | |
-| Facebook URL | |
+| Facebook and Instagram (@aif_blessington) URLs | |
 
 **Glofox** (`glofox` in `data.js`, branch `5d1b81034602ae00a6331853`) is where people
 book, register, buy memberships and fill in forms. The site only links to it. The portal

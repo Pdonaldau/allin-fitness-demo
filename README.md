@@ -54,6 +54,6 @@ the domain's DNS records at the host, as the host's instructions describe.
 ## Going live
 
 1. Replace every placeholder in `data.js` (search for `PLACEHOLDER` and `placeholder: true`).
-2. Add the Instagram URL. The Glofox links are in `glofox` in `data.js`.
+2. Check the Glofox and social links in `data.js` still work.
 3. Swap the 206px thumbnails in `img/` for full-size photos from the gym.
 4. Run `py -3 tools/prerender.py`.

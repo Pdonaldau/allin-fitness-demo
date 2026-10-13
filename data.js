@@ -31,7 +31,7 @@ window.SITE = {
 
   social: {
     facebook: "https://www.facebook.com/allinfitnessblessington/",
-    instagram: "", // Instagram handle not confirmed — add full URL here
+    instagram: "https://www.instagram.com/aif_blessington/",
   },
 
   // News shown in the scrolling blue band. Each item disappears by itself after
@@ -55,6 +55,8 @@ window.SITE = {
     { value: "Free", label: "Parking on site" },
   ],
 
+  // One-to-one personal training is run by the individual trainers, not the gym, so the
+  // Training button goes to the contact section, never to a booking page.
   // Two playing cards: Training first, because the gym wants to be known as a training
   // gym. Class names come from their Glofox (checked 2026-10-13); the line-up changes, so
   // the card tells people to ask. Never list class days or times (gym request). Suit:
@@ -64,8 +66,8 @@ window.SITE = {
     {
       name: "Training", suit: "spade", tag: "Coached",
       text: "Proper coaching built around you, from your first lift to match day.",
-      items: ["Small group training", "One-to-one personal training", "Strength & conditioning for teams", "Online programmes"],
-      button: "Book training", link: "classes",
+      items: ["Small group training", "One-to-one personal training with our trainers", "Strength & conditioning for teams", "Online programmes"],
+      button: "Enquire about training", link: "visit",
     },
     {
       name: "Classes", suit: "heart", tag: "All levels",
@@ -140,7 +142,7 @@ window.SITE = {
     },
     {
       q: "Do you offer personal training?",
-      a: "Yes. We offer one-to-one personal training, small group training and online programmes. Call us or ask at the desk to get started.",
+      a: "Yes. One-to-one personal training is run by the trainers who work at the gym, so call us or ask at the desk and we'll put you in touch. The gym also runs small group training sessions.",
     },
     {
       q: "What classes do you run?",
@@ -159,6 +161,6 @@ window.SITE = {
   community: [
     { title: "Blessington GAA partner", text: "Strength and conditioning for local GAA and soccer teams." },
     { title: "Running club", text: "Group runs around Blessington and the lakes." },
-    { title: "Personal training", text: "One-to-one sessions and online programmes built around your goals." },
+    { title: "Personal training", text: "Our trainers offer one-to-one sessions and online programmes. Ask at the desk to be put in touch." },
   ],
 };
