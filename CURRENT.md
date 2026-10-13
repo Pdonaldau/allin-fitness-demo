@@ -1,6 +1,6 @@
 # CURRENT — All In Fitness demo site
 
-_Updated 2026-10-02. Live site last verified 2026-10-02._
+_Updated 2026-10-13. Live site last verified 2026-10-02 (blue + founders change not yet pushed)._
 
 **Live demo:** https://pdonaldau.github.io/allin-fitness-demo/ (GitHub Pages, public repo
 `Pdonaldau/allin-fitness-demo`, deploys from `main` root on every push). A `noindex` meta tag
@@ -8,8 +8,9 @@ in `index.html` keeps the demo out of search results — remove it at go-live.
 
 ## Goal
 
-Offer All In Fitness (Blessington, Co. Wicklow) a website in exchange for memberships
-for Paul and his son. The first step is a demo good enough to show on a phone.
+All In Fitness (Blessington, Co. Wicklow) accepted the offer on 2026-10-13: the website
+in exchange for two memberships (Paul and his son). Now refining the demo into the real
+site while the gym gets its `.ie` domain.
 
 ## State
 
@@ -18,8 +19,10 @@ for Paul and his son. The first step is a demo good enough to show on a phone.
 - **All content is in `data.js`.** `app.js` renders it. Edit content only in `data.js`.
 - **Design (v2):** built on the gym's own brand. Their logo is a circular badge with
   playing-card suits ("All In" is a poker reference), and their Facebook posts are black
-  and white. The site uses black and white with card red (`--red` in `styles.css`), the
-  Outfit font, class cards drawn as playing cards, a news ticker, a photo grid with a
+  and white. The site uses black and white with a blue accent (`--accent` in `styles.css`,
+`#1e5eff`; the gym asked for blue instead of red on 2026-10-13), the
+  Outfit font, two playing cards (Training first, then Classes; Jordan said they want
+  to be known as a training gym), a news ticker, a photo grid with a
   lightbox, a spinning logo in the hero, and scroll animations. All motion turns off
   under `prefers-reduced-motion`.
 - **Images:** the originals Paul took from Facebook are in `Assets/`. `tools/build_images.py`
@@ -36,20 +39,41 @@ for Paul and his son. The first step is a demo good enough to show on a phone.
 
 ## Real vs placeholder
 
-| Real (public sources or the gym's photos) | Placeholder — get from the gym |
+| Real (public sources, the gym's photos, or their Glofox) | Placeholder — get from the gym |
 |---|---|
-| Address, phone, opening hours, logo, photos | Prices (`€XX`) |
-| 3,750 sq ft, est. 2019, GAA link, running club | Class timetable (partly matches their posts) |
-| Class types; boxing Tue evenings, yoga Thu mornings, strength Tue & Thu | Exact equipment brands and counts |
-| Facebook URL | Instagram URL, Glofox booking link (`#`) |
+| Address, phone, opening hours, logo, photos | Class timetable (partly matches their posts) |
+| 3,750 sq ft, est. 2019, GAA link, running club | Exact equipment brands and counts |
+| Prices, from Glofox memberships (checked 2026-10-13) | Instagram URL |
+| Glofox links: "Book a class" opens classes, "Join now" opens memberships | |
+| Facebook URL | |
 
-Coach names and roles come from a 2020 article. Confirm them. The two people in the
-birthday photo are not named on the site, because we don't know who they are.
+**Glofox** (`glofox` in `data.js`, branch `5d1b81034602ae00a6331853`) is where people
+book, register, buy memberships and fill in forms. The site only links to it. The portal
+also lists their real classes (All In Strength, All In Conditioning, All In Hybrid, HYROX,
+Men's Boxing, Ladies' Boxing, Small Group Training) and trainers (Eamonn Blake, Jordan
+Lynch, Dan Courtney, Aidan King, Robyn Nolan). The Classes card lists these. The timetable
+is still a placeholder with made-up class names.
+
+The team section shows only the two co-founders, Eamonn Blake and Jordan Lynch, at the
+gym's request. Glofox confirms the spelling "Eamonn". The two people in the birthday photo
+are not named on the site, because we don't know who they are.
+
+## Scope
+
+The deal terms, pitch deck link and price anchor are in `DEAL.local.md`. That file is
+gitignored because this repo is public. Never put them in a committed file.
+
+- **Out of scope:** booking system and email. The site only links to their Glofox and
+  their own email.
+- **Domain:** the gym buys and owns the `.ie` in its name. Paul sends the DNS records
+  (GitHub Pages A records + `www` CNAME) or is given access to add them.
 
 ## Next step
 
-Pitch the gym with the live link. If they agree: collect the placeholder items above,
-buy a `.ie` domain and add it under the repo's Pages settings, set `demo: false`, and
-remove the `noindex` tag.
+1. Collect the placeholder items above from the gym. The timetable could be replaced
+   by a link to Glofox, which is always current.
+2. When the gym has the `.ie` domain: add it under the repo's Pages settings and send
+   them the DNS records.
+3. At go-live: set `demo: false` and remove the `noindex` tag.
 
 `gh` CLI is installed but not logged in. Pushing works through git's stored credentials.
