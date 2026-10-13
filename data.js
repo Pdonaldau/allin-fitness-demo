@@ -11,7 +11,7 @@ window.SITE = {
   name: "All In Fitness",
   tagline: "Blessington's biggest gym",
   intro:
-    "3,750 sq ft of serious kit, classes every day and coaches who know your name. Whatever your level, you're welcome here.",
+    "5,000 sq ft of serious kit, classes every day and coaches who know your name. Whatever your level, you're welcome here.",
   founded: 2019,
 
   phone: "045 900 372",
@@ -48,7 +48,7 @@ window.SITE = {
 
   // `count` animates up from zero when the number scrolls into view.
   stats: [
-    { count: 3750, unit: "sq ft", label: "Largest gym in west Wicklow" },
+    { count: 5000, unit: "sq ft", label: "Largest gym in west Wicklow" },
     { count: 7, unit: "years", label: "Serving Blessington since 2019" },
     { value: "6am", label: "Open early on weekdays" },
     { value: "Free", label: "Parking on site" },

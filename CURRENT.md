@@ -46,7 +46,7 @@ section. Don't add times to the cards, the ticker, or the news items.
 | Real (public sources, the gym's photos, or their Glofox) | Placeholder — get from the gym |
 |---|---|
 | Address, phone, opening hours, logo, photos | Exact equipment brands and counts |
-| 3,750 sq ft, est. 2019, GAA link, running club | |
+| 5,000 sq ft (gym confirmed 2026-10-13), est. 2019, GAA link, running club | |
 | Prices, from Glofox memberships (checked 2026-10-13) | Instagram URL |
 | Glofox links: "Book a class" opens classes, "Join now" opens memberships | |
 | Facebook URL | |
