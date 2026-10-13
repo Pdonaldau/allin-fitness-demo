@@ -85,9 +85,9 @@
       </button>`
     )
     .join("") +
-    (S.social.facebook
-      ? `<a class="bento-item bento-more reveal" style="--i:${S.gallery.length}" href="${esc(S.social.facebook)}" target="_blank" rel="noopener">
-          <span class="bento-suits" aria-hidden="true">♠♥♦♣</span><span>More on Facebook →</span></a>`
+    (S.social.instagram
+      ? `<a class="bento-item bento-more reveal" style="--i:${S.gallery.length}" href="${esc(S.social.instagram)}" target="_blank" rel="noopener">
+          <span class="bento-suits" aria-hidden="true">♠♥♦♣</span><span>More on Instagram →</span></a>`
       : "");
   const lightbox = $("#lightbox");
   const lbImg = lightbox.querySelector("img");

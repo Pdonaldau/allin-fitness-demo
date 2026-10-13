@@ -44,3 +44,26 @@ what it replaced.
 
 - **Was:** three invented plans (Gym Only, Go All In, Class Pack) at `€XX`.
 - **Now:** the gym's real plans from their Glofox memberships page.
+
+## 2026-10-13 — Gym's change requests (round 1)
+
+- **Hero line:** was "Blessington's biggest gym" (a size claim like the one they
+  rejected). Now "Blessington's best equipped gym", their wording.
+- **Hero intro:** was "5,000 sq ft of serious kit…". Now the gym's text naming the
+  machine brands.
+- **Top buttons:** "Book a class" in the nav and hero went to Glofox classes. Now both
+  say "Membership options" and jump to `#prices`. The gym wanted "Book a class" further
+  down, so it is on the Classes card (to Glofox) and the bottom CTA band. The nav
+  "Prices" link was dropped as a duplicate.
+- **Classes card button:** was "Enquire about classes" to `#visit`. Now "Book a class"
+  to Glofox. Still no class times on the site itself.
+- **Training card button:** was "Enquire about training". Now "Other services
+  available", still to `#visit`.
+- **Equipment:** was a guess from photos (plate-loaded, free weights, cardio deck,
+  boxing wall). Now brands by machine type, from the gym.
+- **Team:** was the two co-founders only. Now the founders plus Dan Courtney, Robyn
+  Nolan, Aidan King and Shane O'Connor, from the gym.
+- **Community:** "Running club" removed. "Blessington GAA partner" became "Proud
+  Blessington GAA Club sponsor", and "Proud Blessington AFC sponsor" was added.
+- **Gallery tile:** "More on Facebook" became "More on Instagram". The footer still
+  links both.

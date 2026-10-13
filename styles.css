@@ -424,6 +424,7 @@ h3 { font-size: 1.3rem; font-weight: 700; }
 .sub-head { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted); text-align: center; margin-bottom: 32px; }
 
 .coach-grid { display: grid; gap: 24px; grid-template-columns: repeat(2, 1fr); max-width: 520px; margin-inline: auto; }
+@media (min-width: 720px) { .coach-grid { grid-template-columns: repeat(3, 1fr); max-width: 820px; } }
 .coach { text-align: center; }
 .avatar {
   position: relative;

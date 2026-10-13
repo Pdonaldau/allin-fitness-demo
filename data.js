@@ -6,9 +6,10 @@
 
 window.SITE = {
   name: "All In Fitness",
-  tagline: "Blessington's biggest gym",
+  // Tagline and intro are the gym's own wording (2026-10-13).
+  tagline: "Blessington's best equipped gym",
   intro:
-    "5,000 sq ft of serious kit, training for every level and coaches who know your name. Whatever your level, you're welcome here.",
+    "Machines from industry-leading brands including Gymleco, Life Fitness, Cybex, Atlantis, Primal, Concept2 & Evolve. From brand new to vintage & restored, we have some very nice pieces that you don't see in the average gym.",
   founded: 2019,
 
   // The site's public address. Used in structured data and llms.txt. Change it to the
@@ -49,7 +50,7 @@ window.SITE = {
 
   // `count` animates up from zero when the number scrolls into view.
   stats: [
-    { count: 5000, unit: "sq ft", label: "Largest gym in west Wicklow" },
+    { count: 5000, unit: "sq ft", label: "Of training space" },
     { count: 7, unit: "years", label: "Serving Blessington since 2019" },
     { value: "6am", label: "Open early on weekdays" },
     { value: "Free", label: "Parking on site" },
@@ -67,13 +68,13 @@ window.SITE = {
       name: "Training", suit: "spade", tag: "Coached",
       text: "Proper coaching built around you, from your first lift to match day.",
       items: ["Small group training", "One-to-one personal training with our trainers", "Strength & conditioning for teams", "Online programmes"],
-      button: "Enquire about training", link: "visit",
+      button: "Other services available", link: "visit",
     },
     {
       name: "Classes", suit: "heart", tag: "All levels",
-      text: "Class times change through the year, so ask us what's on. Call, message us, or ask at the desk.",
+      text: "Something for everyone, whatever your level. Book online, or call us or ask at the desk for what's on.",
       items: ["All In Strength", "All In Conditioning", "All In Hybrid", "HYROX", "Men's Boxing", "Ladies' Boxing"],
-      button: "Enquire about classes", link: "visit",
+      button: "Book a class", link: "classes",
     },
   ],
 
@@ -87,15 +88,15 @@ window.SITE = {
     { src: "img/floor-strength.webp", alt: "Strength machines and benches", size: "small" },
   ],
 
-  // Seen in the gym's photos; confirm brands and counts with the gym.
+  // Brands by machine type, from the gym (2026-10-13).
   equipment: {
-    placeholder: true,
+    placeholder: false,
     photo: "img/cardio.webp",
     groups: [
-      { name: "Plate-loaded", items: ["Chest & shoulder press", "Rows & pulldowns", "Leg press & hack squat", "Hip thrust"] },
-      { name: "Free weights", items: ["Full dumbbell racks", "Olympic barbells", "Bumper plates", "Adjustable benches"] },
-      { name: "Cardio deck", items: ["Evolve treadmills", "StairMaster", "Bikes", "Rowers"] },
-      { name: "Boxing wall", items: ["Heavy bags", "Uppercut bags", "Pads & gloves"] },
+      { name: "Plate-loaded upper body", items: ["Gymleco", "Cybex", "Primal"] },
+      { name: "Plate-loaded lower body", items: ["Atlantis", "Gymleco", "Primal", "Strength Max"] },
+      { name: "Cable & belt driven", items: ["Primal", "Life Fitness", "Gymleco"] },
+      { name: "Cardio", items: ["Evolve", "StairMaster", "Life Fitness", "Technogym", "Concept2", "Gym Gear"] },
     ],
   },
 
@@ -122,10 +123,14 @@ window.SITE = {
     ],
   },
 
-  // Founders only, at the gym's request. Names from a 2020 news article — confirm spelling.
+  // Names and roles from the gym (2026-10-13). Founders first.
   coaches: [
     { name: "Eamonn Blake", role: "Co-founder" },
     { name: "Jordan Lynch", role: "Co-founder" },
+    { name: "Dan Courtney", role: "Full-time coach" },
+    { name: "Robyn Nolan", role: "Part-time coach" },
+    { name: "Aidan King", role: "Part-time coach" },
+    { name: "Shane O'Connor", role: "Reception & admin" },
   ],
 
   // Questions and answers. Shown on the page and given to Google and AI tools as an
@@ -134,7 +139,7 @@ window.SITE = {
   faq: [
     {
       q: "Where is All In Fitness?",
-      a: "Unit 2, Burgage House, Burgage, Blessington, Co. Wicklow, W91 V065. Call us on 045 900 372.",
+      a: "Unit 2, Burgage House, Burgage, Blessington, Co. Wicklow, W91 V065. Parking on site is free. Call us on 045 900 372.",
     },
     {
       q: "How much is a gym membership?",
@@ -159,8 +164,8 @@ window.SITE = {
   ],
 
   community: [
-    { title: "Blessington GAA partner", text: "Strength and conditioning for local GAA and soccer teams." },
-    { title: "Running club", text: "Group runs around Blessington and the lakes." },
+    { title: "Proud Blessington GAA Club sponsor", text: "We back our local GAA club and run strength and conditioning for local teams." },
+    { title: "Proud Blessington AFC sponsor", text: "We back our local soccer club, on and off the pitch." },
     { title: "Personal training", text: "Our trainers offer one-to-one sessions and online programmes. Ask at the desk to be put in touch." },
   ],
 };
