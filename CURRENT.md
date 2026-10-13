@@ -96,17 +96,31 @@ push, check `git log origin/main..main -p` for them.
 
 - **Out of scope:** booking system and email. The site only links to Glofox and the
   gym's phone.
-- **Domain:** the gym buys and owns the `.ie` in its name. Paul sends the DNS records
-  (GitHub Pages A records + `www` CNAME) or is given access to add them.
+- **Domain:** the gym buys and owns the `.ie` in its name, at Blacknight. It stays on
+  Blacknight's nameservers (no Cloudflare), so the gym keeps control of its DNS and email.
+- **Production hosting (decided 2026-10-13): Paul's shared DigitalOcean server**, not
+  GitHub Pages. The gym adds two records in Blacknight DNS: `A @` and `A www`, both to
+  the server's IP. TLS is Let's Encrypt via `certbot --nginx`, which renews by itself.
+  - Server `165.22.21.95`. SSH login is in the gitignored `SERVER.local.md`, never in a
+    committed file. nginx 1.24 (use
+    `listen 443 ssl http2;`, not `http2 on;`). Verified 2026-10-13: hostname
+    Bixbo-Website-New, nginx 1.24.0, certbot 2.9.0 installed.
+  - The box is shared with other sites. Changes must be additive: a new nginx file
+    for this site only, never edit other sites' configs.
+  - The site is static, so nginx serves the files directly. No pm2, no app port.
+  - Deploy means copying the files to the server (`index.html`, `styles.css`,
+    `app.js`, `data.js`, `llms.txt`, `img/`). Not `Assets/`, `tools/`, notes or
+    `DEAL.local.md`. A deploy script doesn't exist yet.
+  - GitHub Pages stays as the review copy until go-live.
 
 ## Next steps
 
 1. Act on the gym's feedback when Paul brings it.
-2. When the gym has the `.ie`: add it under the repo's Pages settings and send them the
-   DNS records.
+2. When the gym has the `.ie`: send them the two A records, set
+   up the nginx site and certbot, and write a deploy script.
 3. At go-live: set `siteUrl` in `data.js` to the `.ie`, remove the `noindex` tag, make
    `og:image` an absolute URL, add a canonical link, `robots.txt` and `sitemap.xml`,
-   then run `py -3 tools/prerender.py`.
+   then run `py -3 tools/prerender.py` and deploy to the server.
 4. After go-live: verify the domain in Google Search Console, submit the sitemap, and
    ask the gym to put the site link on their Google Business Profile.
 

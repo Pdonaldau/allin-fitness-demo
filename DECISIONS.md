@@ -67,3 +67,14 @@ what it replaced.
   Blessington GAA Club sponsor", and "Proud Blessington AFC sponsor" was added.
 - **Gallery tile:** "More on Facebook" became "More on Instagram". The footer still
   links both.
+
+## 2026-10-13 — Production hosting moves to the DigitalOcean server
+
+- **Was:** GitHub Pages with the gym's `.ie` as a custom domain (four GitHub A
+  records plus a `www` CNAME).
+- **Now:** Paul's shared DigitalOcean server, with nginx serving the static files and
+  a Let's Encrypt certificate. The domain stays on Blacknight's nameservers with two A
+  records pointing at the server. Cloudflare was considered and dropped: it would put
+  the gym's whole DNS in Paul's account, and its HTML caching would get in the way of
+  reviewing changes on the live site. GitHub Pages stays as the review copy until
+  go-live.
