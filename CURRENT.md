@@ -115,19 +115,26 @@ push, check `git log origin/main..main -p` for them.
   - The box is shared with other sites. Changes must be additive: a new nginx file
     for this site only, never edit other sites' configs.
   - The site is static, so nginx serves the files directly. No pm2, no app port.
-  - Deploy means copying the files to the server (`index.html`, `styles.css`,
-    `app.js`, `data.js`, `llms.txt`, `img/`). Not `Assets/`, `tools/`, notes or
-    `DEAL.local.md`. A deploy script doesn't exist yet.
+  - **nginx site is set up (2026-10-16), HTTP only.** Config file
+    `/etc/nginx/sites-available/allinfitness.ie`, symlinked in `sites-enabled`, serves
+    `/var/www/allinfitness/site` (owned by `deployer`, so deploys need no sudo).
+    HTML/CSS/JS/txt are `no-cache`, `img/` caches for 7 days. The 3 `protocol options
+    redefined` warnings in `nginx -t` come from other sites' files and were already there.
+  - **Deploy:** `powershell -File tools\deploy.ps1`. It copies only `index.html`,
+    `styles.css`, `app.js`, `data.js`, `llms.txt` and `img/`, then swaps the folder in
+    one step. Prerender first. First deploy done 2026-10-16 (current `main` content,
+    still with `noindex` and the GitHub Pages `siteUrl`). Verified with
+    `curl -H "Host: allinfitness.ie" http://165.22.21.95/`: 200.
   - GitHub Pages stays as the review copy until go-live.
 
 ## Next steps
 
 1. Act on the gym's feedback when Paul brings it.
-2. When the gym has the `.ie`: send them the two A records, set
-   up the nginx site and certbot, and write a deploy script.
+2. When `allinfitness.ie` resolves publicly (registry hold lifted), run on the server:
+   `sudo certbot --nginx -d allinfitness.ie -d www.allinfitness.ie` (choose redirect).
 3. At go-live: set `siteUrl` in `data.js` to the `.ie`, remove the `noindex` tag, make
    `og:image` an absolute URL, add a canonical link, `robots.txt` and `sitemap.xml`,
-   then run `py -3 tools/prerender.py` and deploy to the server.
+   then run `py -3 tools/prerender.py` and `tools\deploy.ps1`.
 4. After go-live: verify the domain in Google Search Console, submit the sitemap, and
    ask the gym to put the site link on their Google Business Profile.
 
