@@ -118,7 +118,13 @@ push, check `git log origin/main..main -p` for them.
   - **nginx site is set up (2026-10-16), HTTP only.** Config file
     `/etc/nginx/sites-available/allinfitness.ie`, symlinked in `sites-enabled`, serves
     `/var/www/allinfitness/site` (owned by `deployer`, so deploys need no sudo).
-    HTML/CSS/JS/txt are `no-cache`, `img/` caches for 7 days. The 3 `protocol options
+    HTML/CSS/JS/txt are `no-cache`, `img/` caches for 7 days. Security headers
+    (`nosniff`, `Referrer-Policy`, `X-Frame-Options SAMEORIGIN`, `Permissions-Policy`)
+    live in `/etc/nginx/snippets/allinfitness-headers.conf`, included in the server
+    block and in every location block (a location's own `add_header` drops the
+    server-level ones). HSTS is commented out in that snippet until the certificate
+    exists. No CSP, on purpose for now. Verified 2026-10-16 on `/`, CSS, an image and
+    a 404. The 3 `protocol options
     redefined` warnings in `nginx -t` come from other sites' files and were already there.
   - **Deploy:** `powershell -File tools\deploy.ps1`. It copies only `index.html`,
     `styles.css`, `app.js`, `data.js`, `llms.txt` and `img/`, then swaps the folder in
@@ -131,7 +137,8 @@ push, check `git log origin/main..main -p` for them.
 
 1. Act on the gym's feedback when Paul brings it.
 2. When `allinfitness.ie` resolves publicly (registry hold lifted), run on the server:
-   `sudo certbot --nginx -d allinfitness.ie -d www.allinfitness.ie` (choose redirect).
+   `sudo certbot --nginx -d allinfitness.ie -d www.allinfitness.ie` (choose redirect),
+   then uncomment the HSTS line in the headers snippet (not in the port-80 block).
 3. At go-live: set `siteUrl` in `data.js` to the `.ie`, remove the `noindex` tag, make
    `og:image` an absolute URL, add a canonical link, `robots.txt` and `sitemap.xml`,
    then run `py -3 tools/prerender.py` and `tools\deploy.ps1`.
