@@ -78,3 +78,10 @@ what it replaced.
   the gym's whole DNS in Paul's account, and its HTML caching would get in the way of
   reviewing changes on the live site. GitHub Pages stays as the review copy until
   go-live.
+
+## 2026-10-16 — Registrar is Register365, not Blacknight
+
+- **Was:** the plan assumed the gym would buy the `.ie` at Blacknight.
+- **Now:** the gym registered `allinfitness.ie` at Register365. The approach is the
+  same: it stays on the registrar's own nameservers, with two A records pointing at
+  the server.

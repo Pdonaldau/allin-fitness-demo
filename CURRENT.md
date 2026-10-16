@@ -1,6 +1,6 @@
 # CURRENT — All In Fitness website
 
-_Updated 2026-10-13. Live site last verified 2026-10-13 at commit `ea4b896`._
+_Updated 2026-10-16. Live site last verified 2026-10-13 at commit `ea4b896`._
 
 **Live site:** https://pdonaldau.github.io/allin-fitness-demo/ (GitHub Pages, public repo
 `Pdonaldau/allin-fitness-demo`, deploys from `main` root on every push, live in about a
@@ -96,10 +96,17 @@ push, check `git log origin/main..main -p` for them.
 
 - **Out of scope:** booking system and email. The site only links to Glofox and the
   gym's phone.
-- **Domain:** the gym buys and owns the `.ie` in its name, at Blacknight. It stays on
-  Blacknight's nameservers (no Cloudflare), so the gym keeps control of its DNS and email.
+- **Domain: `allinfitness.ie`**, registered 2026-10-16 at **Register365** (not
+  Blacknight) by the registrant AIF Gym Ltd. It stays on Register365's nameservers
+  (`ns0`/`ns1`/`ns2.reg365.net`, no Cloudflare), so the gym keeps control of its DNS and
+  email. Checked 2026-10-16 14:15 UTC: registry status `pendingCreate` + `serverHold`
+  (normal .ie validation), so the domain doesn't resolve publicly yet. **DNS records
+  are done** (checked 2026-10-16 against all three reg365 nameservers): `A @` and
+  `A www` both `165.22.21.95`, no `AAAA`. MX is Register365's default forwarding
+  (`fwd0`/`fwd1`/`fwd2.hosts.co.uk`); leave it alone. The records go public when the
+  hold lifts.
 - **Production hosting (decided 2026-10-13): Paul's shared DigitalOcean server**, not
-  GitHub Pages. The gym adds two records in Blacknight DNS: `A @` and `A www`, both to
+  GitHub Pages. The gym adds two records in Register365 DNS: `A @` and `A www`, both to
   the server's IP. TLS is Let's Encrypt via `certbot --nginx`, which renews by itself.
   - Server `165.22.21.95`. SSH login is in the gitignored `SERVER.local.md`, never in a
     committed file. nginx 1.24 (use
